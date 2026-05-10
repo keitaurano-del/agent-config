@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit(**)",
+      "Bash(**)",
+      "Read(**)",
+      "Write(**)",
+      "Agent(**)"
+    ]
+  },
+  "theme": "auto",
+  "skipAutoPermissionPrompt": true
+}

@@ -1,0 +1,31 @@
+# 認証情報（絶対に同期しない）
+.credentials.json
+.mcp.json
+
+# ローカル設定
+settings.local.json
+
+# 会話履歴・キャッシュ系（容量大・マシン固有）
+projects/*/*.jsonl
+projects/*/[!m]*/
+sessions/
+shell-snapshots/
+paste-cache/
+file-history/
+session-env/
+cache/
+backups/
+plugins/
+tasks/
+plans/
+
+# ログ・一時ファイル
+*.log
+history.jsonl
+.last-cleanup
+todos/
+statsig/
+
+# memory配下のキャッシュは除外、本体は含める
+!projects/*/memory/
+!projects/*/memory/**
