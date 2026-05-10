@@ -10,7 +10,7 @@ openclaw の Anthropic provider 認証は **Claude.ai プラン (Max) OAuth** �
 
 **現状の構成:**
 - エージェントレベル `~/.openclaw/agents/main/agent/auth-profiles.json` に `anthropic:claude-cli` OAuth プロファイルあり（`type: "oauth"`、access/refresh/expires 持ち、自動リフレッシュ）
-- グローバル `/root/.openclaw/auth-profiles.json` は `{}` に空化済み（旧 `anthropic:manual` API キーは 2026-05-10 削除、バックアップは `auth-profiles.json.removed-20260510-010136.bak`）
+- グローバル `/root/.openclaw/auth-profiles.json` は `{}` に空化済み（旧 `anthropic:manual` API キーは 2026-05-10 削除、バックアップも 2026-05-10 削除済み）
 - `/root/.bashrc` の `ANTHROPIC_API_KEY` export なし
 - デフォルトモデル `anthropic/claude-sonnet-4-6`、aliases `opus`/`sonnet` 設定済み
 - `openclaw models status` で `effective=profiles | anthropic:claude-cli=OAuth` / `Shell env: off` を確認
@@ -22,4 +22,4 @@ openclaw の Anthropic provider 認証は **Claude.ai プラン (Max) OAuth** �
 - `claude-cli` は provider ID ではなく synthetic auth ref（CLI backend ID）。auth login コマンドの `--provider` には `anthropic` を渡すこと
 - registry stale で `Unknown provider` 系エラーが出たら `openclaw plugins registry --refresh` を最初に試す
 - 環境変数 `ANTHROPIC_API_KEY` を再追加すると effective が profiles から env に戻る可能性あり。基本入れない
-- API キー（`sk-ant-api03-xMV80...` で始まっていたもの）は Anthropic コンソール側でも Revoke 推奨。バックアップファイルは流出リスクがあるので不要になったら削除
+- 旧 API キー（`sk-ant-api03-xMV80...` で始まっていたもの）はローカルから完全削除済み。Anthropic コンソール側で Revoke 済みかは未確認 — もし未対応なら https://console.anthropic.com/settings/keys で対応推奨
