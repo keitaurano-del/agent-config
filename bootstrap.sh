@@ -50,6 +50,30 @@ link "${META_DIR}/CLAUDE.md" "${PROJECTS_DIR}/CLAUDE.md"
 link "${META_DIR}/agents"    "${PROJECTS_DIR}/.claude/agents"
 
 echo ""
+echo "auto memory の cross-cwd symlink を作成..."
+# Claude Code は cwd を /-/ 区切りに変換したディレクトリ名で memory を保管する。
+# クラウド環境の memory は /root/projects 由来の `-root-projects/memory` に集約されているため、
+# ローカルの PROJECTS_DIR から想定される名前のディレクトリを作って symlink で指す。
+SOURCE_MEMORY="${CLAUDE_DIR}/projects/-root-projects/memory"
+if [[ ! -d "${SOURCE_MEMORY}" ]]; then
+  echo "  ⚠️  ${SOURCE_MEMORY} が無いので memory symlink はスキップ"
+else
+  # PROJECTS_DIR の絶対パスを `/` → `-` に変換してプロジェクト識別名を作る
+  PROJ_ABS="$(cd "${PROJECTS_DIR}" 2>/dev/null && pwd || echo "${PROJECTS_DIR}")"
+  PROJ_SLUG="${PROJ_ABS#/}"
+  PROJ_SLUG="-${PROJ_SLUG//\//-}"
+  LOCAL_PROJ_DIR="${CLAUDE_DIR}/projects/${PROJ_SLUG}"
+  TARGET_MEMORY="${LOCAL_PROJ_DIR}/memory"
+
+  if [[ "${TARGET_MEMORY}" == "${SOURCE_MEMORY}" ]]; then
+    echo "  ℹ️  PROJECTS_DIR が /root/projects と一致。memory symlink は不要"
+  else
+    mkdir -p "${LOCAL_PROJ_DIR}"
+    link "${SOURCE_MEMORY}" "${TARGET_MEMORY}"
+  fi
+fi
+
+echo ""
 echo "✨ bootstrap 完了"
 echo ""
 echo "次にやること:"

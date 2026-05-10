@@ -46,9 +46,13 @@ git clone git@github.com:keitaurano-del/cxo-agent.git
 bootstrap 後、以下の symlink が張られる：
 
 ```
-~/projects/CLAUDE.md       -> ~/.claude/projects-meta/CLAUDE.md
-~/projects/.claude/agents  -> ~/.claude/projects-meta/agents
+~/projects/CLAUDE.md                              -> ~/.claude/projects-meta/CLAUDE.md
+~/projects/.claude/agents                         -> ~/.claude/projects-meta/agents
+~/.claude/projects/-<PROJECTS_DIR>/memory         -> ~/.claude/projects/-root-projects/memory
 ```
+
+3つ目は、Claude Code が cwd ごとに別の memory ディレクトリを参照する仕様への対応。
+ローカルの cwd（例: `/home/keita/projects`）でも、リポと同じ auto memory が読み込まれるようになる。
 
 ## 編集フロー
 
