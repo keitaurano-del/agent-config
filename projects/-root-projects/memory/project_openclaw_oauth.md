@@ -1,17 +1,25 @@
 ---
 name: openclaw Anthropic OAuth セットアップ済み
-description: openclaw の Anthropic provider が Claude.ai プラン OAuth で認証されている状態。env var の API キーは削除済み。
+description: openclaw の Anthropic provider が Claude.ai プラン OAuth で認証されている状態。auth-profiles.json はエージェントレベルとグローバルレベルの2階層に分かれている点に注意。
 type: project
 originSessionId: dd295a05-e465-465b-9e20-25be9f193e21
 ---
-openclaw の Anthropic provider 認証は **Claude.ai プラン OAuth** に切り替え済み（2026-05-10 セットアップ）。
-`auth-profiles.json` に `anthropic:claude-cli=OAuth` プロファイルが登録され、`effective.kind: "profiles"` で env var より優先される。`/root/.bashrc` の `ANTHROPIC_API_KEY` export は削除済み。
+openclaw の Anthropic provider 認証は **Claude.ai プラン (Max) OAuth** 一本化済み（2026-05-10 再確認・整理）。API キープロファイルは削除済みで、推論はすべて Max プランの定額枠で動く。
 
-**Why:** Pro/Max プランの OAuth 経由で opus-4-7 / sonnet-4-6 等の上位モデルにアクセスできるようにするため。API キー従量課金から OAuth プラン定額への移行。
+**Why:** Pro/Max プランの OAuth 経由で opus-4-7 / sonnet-4-6 等の上位モデルにアクセスし、API キー従量課金を発生させないため。
+
+**現状の構成:**
+- エージェントレベル `~/.openclaw/agents/main/agent/auth-profiles.json` に `anthropic:claude-cli` OAuth プロファイルあり（`type: "oauth"`、access/refresh/expires 持ち、自動リフレッシュ）
+- グローバル `/root/.openclaw/auth-profiles.json` は `{}` に空化済み（旧 `anthropic:manual` API キーは 2026-05-10 削除、バックアップは `auth-profiles.json.removed-20260510-010136.bak`）
+- `/root/.bashrc` の `ANTHROPIC_API_KEY` export なし
+- デフォルトモデル `anthropic/claude-sonnet-4-6`、aliases `opus`/`sonnet` 設定済み
+- `openclaw models status` で `effective=profiles | anthropic:claude-cli=OAuth` / `Shell env: off` を確認
 
 **How to apply:**
-- openclaw 経由の推論が `Unknown provider` 系で落ちたら、`openclaw plugins registry --refresh` を最初に試す（registry stale が頻出）
-- `claude-cli` は **provider ID ではなく CLI backend ID / synthetic auth ref**。auth login コマンドには `--provider anthropic` を渡し、interactive 選択肢で "Anthropic Claude CLI"（choiceId: `anthropic-cli`）を選ぶ
-- OAuth ログインの前段に `claude auth login --claudeai` で Claude CLI 自体の OAuth が必要（credentials.json に `claudeAiOauth` キーが入る）
-- デフォルトモデルは `anthropic/claude-sonnet-4-6`、aliases に `opus`/`sonnet` あり
-- env var を再追加すると effective が profiles から env に戻る可能性あり（現状は profiles 優先）
+- 状態確認は `openclaw models status` が最速。`Auth store` 行と `effective=profiles` を確認すれば OAuth で動いてるか即判別できる
+- **auth-profiles.json は2階層あるので注意**: グローバル `/root/.openclaw/auth-profiles.json` だけ見て「OAuth 消えた」と早合点しないこと。実際に効くのはエージェントレベル `~/.openclaw/agents/main/agent/auth-profiles.json`
+- OAuth が壊れたときの復旧: `claude auth login --claudeai` で Claude CLI 自体の OAuth を取り直してから、`openclaw models auth login --provider anthropic` で "Anthropic Claude CLI"（choiceId: `anthropic-cli`）を選ぶ
+- `claude-cli` は provider ID ではなく synthetic auth ref（CLI backend ID）。auth login コマンドの `--provider` には `anthropic` を渡すこと
+- registry stale で `Unknown provider` 系エラーが出たら `openclaw plugins registry --refresh` を最初に試す
+- 環境変数 `ANTHROPIC_API_KEY` を再追加すると effective が profiles から env に戻る可能性あり。基本入れない
+- API キー（`sk-ant-api03-xMV80...` で始まっていたもの）は Anthropic コンソール側でも Revoke 推奨。バックアップファイルは流出リスクがあるので不要になったら削除
