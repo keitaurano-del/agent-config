@@ -32,9 +32,9 @@
 論理思考トレーニングアプリ。React 19 + Vite + TypeScript のフロントエンドと Express 5 バックエンドで構成。Supabase (PostgreSQL) をメイン DB とし、Capacitor で iOS/Android にも対応。Anthropic Claude API でロールプレイ・フラッシュカード生成などの AI 機能を提供。Stripe で課金管理。
 → 詳細: `logic/CLAUDE.md`
 
-### sengoku-chakai (`/root/projects/sengoku-chakai`)
-東京の茶道ビジネス向け二言語（EN/JA）マーケティング & 予約サイト。Next.js + next-intl + Tailwind CSS 4 で構築した純フロントエンド。バックエンド API・DB なし。予約は Google Forms、決済は Stripe Payment Link で処理。
-→ 詳細: `sengoku-chakai/CLAUDE.md`
+### en-chakai (`/root/projects/en-chakai`)
+東京の茶道ビジネス向け二言語（EN/JA）マーケティング & 予約サイト。旧名 sengoku-chakai（千石茶会）から **円茶会 / En Chakai** へリブランド済み（2026-04-22 commit `cb1caba`、リポ rename 2026-05-11）。Next.js + next-intl + Tailwind CSS 4 で構築した純フロントエンド。バックエンド API・DB なし。予約は Google Forms、決済は Stripe Payment Link で処理。
+→ 詳細: `en-chakai/CLAUDE.md`
 
 ### cxo-agent (`/root/projects/cxo-agent`)
 CXO 向けエージェント。現在セットアップ初期段階。
