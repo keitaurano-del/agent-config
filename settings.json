@@ -2,11 +2,11 @@
   "permissions": {
     "allow": [
       "Edit(**)",
-      "Bash(**)",
       "Read(**)",
       "Write(**)",
       "Agent(**)"
-    ]
+    ],
+    "defaultMode": "bypassPermissions"
   },
   "permittedRepositories": [
     "keitaurano-del/logic",
@@ -14,5 +14,6 @@
     "keitaurano-del/cxo-agent"
   ],
   "theme": "auto",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "skipDangerousModePermissionPrompt": true
 }
