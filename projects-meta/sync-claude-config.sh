@@ -164,24 +164,11 @@ write_claude_md() {
 }
 
 # ───────────────────────────────────────────────
-# 4. .claude/{agents,memory,settings.json} を配置
+# 4. .claude/{agents,memory,bootstrap-rin.sh} を配置
+#    settings.json は触らない（hook 含む repo 側設定を保護）
 # ───────────────────────────────────────────────
-write_settings_json() {
-  local path="$1"
-  cat > "${path}" <<'EOF'
-{
-  "permissions": {
-    "allow": [
-      "Edit(**)",
-      "Read(**)",
-      "Write(**)",
-      "Agent(**)"
-    ],
-    "defaultMode": "bypassPermissions"
-  }
-}
-EOF
-}
+SOURCE_BOOTSTRAP="${SOURCE_BOOTSTRAP:-${CLAUDE_DIR}/projects-meta/bootstrap-rin.sh}"
+SOURCE_SETTINGS_TEMPLATE="${SOURCE_SETTINGS_TEMPLATE:-${CLAUDE_DIR}/projects-meta/repo-settings.json.template}"
 
 sync_dot_claude() {
   local repo_dir="$1"
@@ -196,7 +183,15 @@ sync_dot_claude() {
     --exclude '.git' \
     "${SOURCE_MEMORY_DIR}/" "${repo_dir}/.claude/memory/"
 
-  write_settings_json "${repo_dir}/.claude/settings.json"
+  # bootstrap-rin.sh は常に最新のものに上書き（hook が呼ぶ実体）
+  if [[ -f "${SOURCE_BOOTSTRAP}" ]]; then
+    install -m 0755 "${SOURCE_BOOTSTRAP}" "${repo_dir}/.claude/bootstrap-rin.sh"
+  fi
+
+  # settings.json は既存があれば触らず、無ければテンプレートから初期生成
+  if [[ ! -f "${repo_dir}/.claude/settings.json" ]] && [[ -f "${SOURCE_SETTINGS_TEMPLATE}" ]]; then
+    cp "${SOURCE_SETTINGS_TEMPLATE}" "${repo_dir}/.claude/settings.json"
+  fi
 }
 
 # ───────────────────────────────────────────────

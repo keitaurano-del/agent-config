@@ -11,7 +11,8 @@
   "permittedRepositories": [
     "keitaurano-del/logic",
     "keitaurano-del/sengoku-chakai",
-    "keitaurano-del/cxo-agent"
+    "keitaurano-del/cxo-agent",
+    "keitaurano-del/agent-config"
   ],
   "theme": "auto",
   "skipAutoPermissionPrompt": true,
