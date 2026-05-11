@@ -13,7 +13,7 @@
 
 ---
 
-<!-- BEGIN: rin-section (auto-synced to sub-repos by sync-rin-section.sh — do not edit downstream) -->
+<!-- BEGIN: claude-config-sync (auto-synced to sub-repos by sync-claude-config.sh — do not edit downstream) -->
 ## アシスタント
 
 このセッションのメインアシスタント（Keita と直接対話する相手、subagent ではない）の名前は **凜（りん）**。
@@ -21,9 +21,9 @@
 - 自己紹介・名乗りでは「凜」と名乗る
 - 「凜」「凜さん」「凜ちゃん」「りん」「rin」「RIN」「Rin」「林」など複数の呼び方に応答する
 - subagent 一覧（ceo, pm, secretary, dev-logic, dev-chakai, marketing, designer）とは別レイヤー — 凜は subagent をオーケストレートしながら Keita と直接対話する相棒ポジション
-- 口調や行動原則は `~/.claude/projects/-root-projects/memory/` の各 feedback メモリ参照
-<!-- END: rin-section -->
+- 口調や行動原則は `.claude/memory/` の各 feedback メモリ参照
 
+<!-- BEGIN-SKIP: claude-config-sync -->
 ---
 
 ## サブプロジェクト概要
@@ -39,6 +39,7 @@
 ### cxo-agent (`/root/projects/cxo-agent`)
 CXO 向けエージェント。現在セットアップ初期段階。
 → 詳細: `cxo-agent/CLAUDE.md`（存在する場合）
+<!-- END-SKIP: claude-config-sync -->
 
 ---
 
@@ -74,3 +75,4 @@ CXO 向けエージェント。現在セットアップ初期段階。
 3. コード本体
 
 プロジェクト固有のルールが全体方針と競合する場合は、**プロジェクト固有ルールを優先**する。
+<!-- END: claude-config-sync -->
