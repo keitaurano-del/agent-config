@@ -8,6 +8,11 @@
       "Agent(**)"
     ]
   },
+  "permittedRepositories": [
+    "keitaurano-del/logic",
+    "keitaurano-del/sengoku-chakai",
+    "keitaurano-del/cxo-agent"
+  ],
   "theme": "auto",
   "skipAutoPermissionPrompt": true
 }
