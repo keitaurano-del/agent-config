@@ -13,3 +13,4 @@
 - [Pixa は使わない](feedback_no_pixa.md) — 画像生成ツールとして Pixa は今後一切不使用。Figma + 手書き素材 or 外部ツール経由で対応（2026-05-11）
 - [Figma ログイン](reference_figma_login.md) — Figma は keita.urano@gmail.com の Google アカウントでログイン済み
 - [本番デプロイコマンド](reference_deploy_commands.md) — logic / en-chakai の手動デプロイは `gh workflow run deploy-production.yml -f confirm=yes`
+- [Logic Android 内部配信フロー](project_logic_android_deploy.md) — main push で内部テスターへ自動 rollout。Production 初回公開済み（2026-05-13）
