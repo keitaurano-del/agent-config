@@ -8,13 +8,14 @@
     ],
     "defaultMode": "bypassPermissions"
   },
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "auto",
+  "skipAutoPermissionPrompt": true,
   "permittedRepositories": [
     "keitaurano-del/logic",
     "keitaurano-del/en-chakai",
     "keitaurano-del/cxo-agent",
-    "keitaurano-del/agent-config"
-  ],
-  "theme": "auto",
-  "skipAutoPermissionPrompt": true,
-  "skipDangerousModePermissionPrompt": true
+    "keitaurano-del/agent-config",
+    "keitaurano-del/obsidian-vault"
+  ]
 }
