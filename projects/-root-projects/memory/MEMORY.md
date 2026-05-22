@@ -14,6 +14,7 @@
 - [Figma ログイン](reference_figma_login.md) — Figma は keita.urano@gmail.com の Google アカウントでログイン済み
 - [本番デプロイコマンド](reference_deploy_commands.md) — logic / en-chakai の手動デプロイは `gh workflow run deploy-production.yml -f confirm=yes`
 - [Logic Android 内部配信フロー](project_logic_android_deploy.md) — main push で内部テスターへ自動 rollout。Production 初回公開済み（2026-05-13）
+- [Logic Render Production 自動デプロイ](project_logic_render_auto_deploy.md) — required reviewers 削除済（2026-05-22）。main push / workflow_dispatch 両方とも approve なし
 - [アプリUI文言は中立的な丁寧体](feedback_app_copy_neutral.md) — アプリ内のi18n/ラベル/エラー文言は凛口調NG、「〜です/〜ます」で書く。凛トーンはKeitaとの会話のみ
 - [Logic はモバイル専用](project_logic_mobile_only.md) — Web 版は本番リリース・マーケ対象外。優先順位・施策はモバイル体験中心で判断する
 - [Logic 認証はマジックリンクのみ](feedback_logic_auth_magiclink_only.md) — OTPコード方式・Googleログインは使わない。メール送信→リンクタップだけのフローに統一
