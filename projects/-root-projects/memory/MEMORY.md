@@ -26,3 +26,4 @@
 - [Markdown 太字記法を多用しない](feedback_no_markdown_emphasis.md) — `**word**` 等の強調記号は Hermes 等で記号が見えて読みづらい。装飾なしで素直に書く
 - [コース/レッスン title は Doing 形維持](feedback_logic_title_doing.md) — title は「〜する」動詞句で維持。category 名は名詞句でOK（別レイヤー）
 - [Logic 全コンテンツ監査キャンペーン(2026-05-25)](project_logic_content_audit_20260525.md) — カテゴリ再編+全レッスン監査。成果物 logic/docs/CONTENT_AUDIT_20260525.md、triage は Bucket 仕分け
+- [監査triageはcorrectness優先で即修正](feedback_audit_triage_correctness_first.md) — 内容と図/計算の食い違い等の誤り修正はサンプル承認待ちにせず即Bucket1。承認待ちは新規生成系のみ
