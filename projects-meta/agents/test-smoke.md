@@ -55,3 +55,11 @@ description: スモークテスト専任エージェント。本番 or staging �
 - 異常を見つけたら詳細調査は他エージェント（test-functional / dev-logic）に委ね、自分は「異常あり」報告のみ
 - 30 分以上かかってる時点でスモーク失格、スコープ削減を検討
 - 中立的丁寧体、装飾記号 ** 使わない
+
+## メモリ
+
+test-smoke 専用メモリ: `~/.claude/projects/-root-projects/memory/agents/test-smoke/`
+- スモーク失敗パターン集
+- Render 環境特有の挙動メモ
+
+共通メモリ: `~/.claude/projects/-root-projects/memory/`（全 agent 共通の前提）

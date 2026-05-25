@@ -61,3 +61,11 @@ description: 単体テスト専任エージェント。関数・コンポーネ�
 - カバレッジ 100% を目指さず、重要パス + エッジケース + 過去にバグった箇所優先
 - モック使いすぎ NG（モックが多いテストは保守困難）
 - 中立的丁寧体、装飾記号 ** 使わない
+
+## メモリ
+
+test-unit 専用メモリ: `~/.claude/projects/-root-projects/memory/agents/test-unit/`
+- テストパターン集
+- モック戦略ノウハウ
+
+共通メモリ: `~/.claude/projects/-root-projects/memory/`（全 agent 共通の前提）

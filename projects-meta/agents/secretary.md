@@ -92,6 +92,14 @@ gcalcli search "キーワード"  # 予定検索
 
 ## よく使うテンプレート
 
+## メモリ
+
+secretary 専用メモリ: `~/.claude/projects/-root-projects/memory/agents/secretary/`
+- Calendar 操作ノウハウ
+- メールテンプレ集
+
+共通メモリ: `~/.claude/projects/-root-projects/memory/`（全 agent 共通の前提）
+
 ### 日程調整メール
 ```
 件名: 【日程調整】〇〇のご相談

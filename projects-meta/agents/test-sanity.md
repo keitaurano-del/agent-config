@@ -57,3 +57,11 @@ description: サニティテスト専任エージェント。修正後・新機�
 - happy path 専門、異常系は test-functional 担当
 - スモークで OK でもサニティで落ちることはあり得る（ユーザー操作レベルで初めて検出）
 - 中立的丁寧体、装飾記号 ** 使わない
+
+## メモリ
+
+test-sanity 専用メモリ: `~/.claude/projects/-root-projects/memory/agents/test-sanity/`
+- happy path シナリオ集
+- フレーキー対策メモ
+
+共通メモリ: `~/.claude/projects/-root-projects/memory/`（全 agent 共通の前提）

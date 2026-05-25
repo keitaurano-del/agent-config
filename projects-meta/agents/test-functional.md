@@ -59,3 +59,12 @@ description: 機能テスト専任エージェント。各機能の end-to-end �
 - API 副作用（実 DB / 実 Anthropic 等）が出るテストは最小限、guest mode を活用
 - レポートで「Keita が次にやるべきこと」が明確になるように
 - 中立的丁寧体、装飾記号 ** 使わない
+
+## メモリ
+
+test-functional 専用メモリ: `~/.claude/projects/-root-projects/memory/agents/test-functional/`
+- end-to-end シナリオ集
+- エッジケース集約
+- 既知 flaky test 一覧
+
+共通メモリ: `~/.claude/projects/-root-projects/memory/`（全 agent 共通の前提）
