@@ -51,6 +51,30 @@ Logic アプリのコンテンツとアプリ構築全体を、ロジカルシ�
 - 数値・統計の主張に出典 or 根拠があるか
 - 図解（Visual）が文章の主張と一致しているか（過去 184 件の Visual 不一致事故と同じ轍を踏まない）
 
+## 監査プレイブック（2026-05-25 大規模キャンペーンで確立）
+
+過去に実際に検出した違反クラス。毎回これを機械的にチェックすると取りこぼしが減る。
+
+### 進め方の鉄則（効率）
+- 精読の前に必ず「機械インベントリ」を作る: コース×所属レッスン id 一覧、visual名×使用レッスン×visualProps有無 のマップ。異常値だけ精読に進む二段構え。
+- group 単位でバッチ分割し、ja/en は必ずペアで見る（片方だけ直すと新たな不整合を生む）。
+- 全件精読が無理なら「機械走査=全件 / 精読=重点+サンプリング」を明記してカバレッジを正直に報告。
+
+### チェックリスト（高頻度ヒット順）
+1. visualProps の silent fallback: `visual:` 指定ありで `visualProps` 未指定 or キー形式違いの explain。Visual が DEFAULT_PROPS にフォールバックし本文と無関係の図が出る。型が `Record<string,unknown>` なので tsc では出ない。各 Visual の JSDoc と prop の key/shape を突き合わせる。実例: focus の FeedbackLoop(`edges`→`arrows`,文字列ID→数値index) / Pyramid(`layers`→conclusion/claims/evidence) / LeveragePoints(`points`→`tiers`)。
+2. 固定描画 Visual の概念誤用: props で中身を変えられない Visual を別概念のレッスンに当てる。実例: アブダクション(lesson-304)に DeductionDiagram(演繹三段論法)。lesson-71「相関≠因果」事故と同クラス。図の意味＝レッスンの主張 を必ず照合。
+3. ja/en パリティ崩れ: (a) outro が ja にあり en に無い→まとめ concept スライドが en で欠落、(b) visual/visualProps が ja にあり en に無い、(c) ja-fallback ファイル(en が ja の再 export)＝コース丸ごと未翻訳、(d) en のクイズ訳がコース自身の定義語彙と矛盾(Problem/Issue)、(e) 同一 id で en 拡張版/ja 簡易版と分量非対称＝学べる内容が違う。
+4. extra レッスン後置アンチパターン: 後から足した extra(3xx)を「実践/まとめ」レッスンの後ろに置き、新概念がまとめの後に初出する順序逆転。修正は lessons 配列で「まとめ step を持つレッスンを末尾へ」。運用ルール: extra 追加時はまとめより前に挿す。
+5. category↔group の 1対多 / title↔中身ズレ: 同一 category が複数 group にまたがる(クライアントワーク)、コース title の約束と中身が乖離・入れ替わり(client-01/02)。
+6. 「N個ある」の網羅性: 「3つのパターン」等は本当に N 個で MECE か。実例 fermi-02「6分解パターン」は本文で N=6 を確認。
+7. 計算・設問の整合: ja と en で数値が食い違う(fermi-224 は ja のみ誤り)、提示した計算式が正解値を導かない設問設計の破綻(fermi-225 式→6,250 なのに正解25,000)。純計算は必ず検算。
+8. title の Doing 形統一: コース内で「〜する」動詞句と名詞止めが混在していないか（ただし title リネームはサムネ整合コストとセットで Keita 判断）。
+9. プレーン表示での Markdown 崩れ: explain 本文はプレーン描画。`*誌名*` 等のアスタリスク強調が生で出る。
+10. 数値主張の出典: 同一 step 内で出典付き主張と出典なし主張が混在していないか。
+
+### 系統的リスク（再発防止の提言枠として常に添える）
+- visualProps が `Record<string,unknown>` で型チェックが効かず、キー誤りが無言でフォールバックする。型強化 or 実機スクショ差分検証が根治策。指摘に含めて dev-logic / designer に渡す。
+
 ## 動作モード
 
 ### A. 定期監査（毎週 or 月次）

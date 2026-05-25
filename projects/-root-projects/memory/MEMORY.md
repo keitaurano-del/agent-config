@@ -24,3 +24,5 @@
 - [Metabase Phase 1 セットアップ](project_metabase_setup.md) — Supabase 側自動完了済（2026-05-23）。Render Blueprint deploy + Metabase 初回ログイン + 5 Question 登録は Keita 手動操作待ち
 - [Hermes ローカルツール](reference_hermes_local.md) — Keita ローカル WSL の Nous Research 製 AI エージェント。config 壊れた時は `~/.hermes/config.yaml.bak.*` から復旧
 - [Markdown 太字記法を多用しない](feedback_no_markdown_emphasis.md) — `**word**` 等の強調記号は Hermes 等で記号が見えて読みづらい。装飾なしで素直に書く
+- [コース/レッスン title は Doing 形維持](feedback_logic_title_doing.md) — title は「〜する」動詞句で維持。category 名は名詞句でOK（別レイヤー）
+- [Logic 全コンテンツ監査キャンペーン(2026-05-25)](project_logic_content_audit_20260525.md) — カテゴリ再編+全レッスン監査。成果物 logic/docs/CONTENT_AUDIT_20260525.md、triage は Bucket 仕分け
