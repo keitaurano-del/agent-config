@@ -23,6 +23,8 @@ plans/
 *.log
 history.jsonl
 .last-cleanup
+.update.lock
+mcp-needs-auth-cache.json
 todos/
 statsig/
 
