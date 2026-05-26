@@ -28,3 +28,4 @@
 - [Logic 全コンテンツ監査キャンペーン(2026-05-25)](project_logic_content_audit_20260525.md) — カテゴリ再編+全レッスン監査。成果物 logic/docs/CONTENT_AUDIT_20260525.md、triage は Bucket 仕分け
 - [監査triageはcorrectness優先で即修正](feedback_audit_triage_correctness_first.md) — 内容と図/計算の食い違い等の誤り修正はサンプル承認待ちにせず即Bucket1。承認待ちは新規生成系のみ
 - [報告はパス参照でなく内容を直接書く](feedback_direct_content_not_path.md) — Obsidian sync 差で Keita がファイルを開けない場合があるため、重要内容は会話本文に直接展開する（パス案内は補足）
+- [レッスン本文の視覚化はハイブリッド](feedback_logic_lesson_visual_hybrid.md) — 図解(SVG diagram)に加え、体系的=SVGアイコン/話題物=絵文字 のハイブリッドで読みやすく。本文限定、UI chromeはアイコンのみ。図解カバレッジは約30%
