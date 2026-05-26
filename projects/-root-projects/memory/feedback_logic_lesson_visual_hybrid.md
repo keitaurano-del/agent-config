@@ -24,12 +24,13 @@ Logic のレッスンは「文字ベースすぎる」ので、視覚化して�
 - カバレッジは ja explain ステップ 744 中 222（約30%）に図解あり（2026-05-26 集計）。残り約7割は文字のみ。手薄な高価値カテゴリ: numeracy(12%/50説明) > cognitive(13%) > issue(12%) > peakPerformance(13%) など。career系・easternPhilosophy は3〜7%。
 - インライン視覚要素（本記事の主題）と図解拡充は両輪で「文字ベースすぎる」を解消する。
 
-**実装状況（2026-05-26、第一弾 shipped・PR #219 で main マージ済み）:**
+**実装状況（2026-05-26、全36レッスンファイル展開 完了・本番反映済み）:**
 - 記法は実装済み: 本文に `[icon:name]`（インラインSVGアイコン。`icon:` 固定prefixで `3:1`/`10:30` 等のコロンと衝突しない）と `:::tip` / `:::warn` / `:::point` / `:::note`（注記ボックス、kind別アイコン+テーマ色）。
 - 実装場所: `src/richText.ts`（パーサ・stripMarkup）、`src/components/RichLessonText.tsx`（ICON_REGISTRY・描画）、`src/lessonSlides.ts`（splitBody を callout-aware 化＝`:::`ブロックは分割の atomic unit）。
 - 執筆ガイドは `logic/CLAUDE.md` gotchas #5 に記載: 正準アイコン名は good/bad/point/warn（エイリアスは内部互換用）、name は小文字＋ハイフンのみ、意味アイコンは語ラベル併記、callout は1スライド最大1個・構造化済みの塊には使わない、密度目安 callout最大1/inlineアイコン2〜3、絵文字は話題物限定で `✓✗★` は生記号でなくアイコン記法。
-- サンプル適用済み: cognitive `id:700`/`id:704`（ja/en）。logic-coach + reviewer 監査通過。
-- 残課題: カバレッジ拡大は未着手（cognitive 2レッスンのみ）。手薄カテゴリ numeracy/cognitive/issue を優先展開予定。`id:704` の good/bad アイコンを個別項目に付けるか（現状は見出しラベル方式）は Keita 判断保留。
+- 全展開完了: 2026-05-26 に全36レッスンファイル（ja/en）へ展開し本番反映。8デプロイバッチ（PR #219〜228）、各バッチ logic-coach 監査通過（哲学の概念正確性・career の事実精度・logic の論理概念も検証、誤り混入ゼロ）。図解タップナビ誤判定バグ（visual スライドの左右タップゾーンが図解操作を奪う）も同時修正済み。
+- Phase 2 候補（新規図解部品バックログ・任意・未着手）: AnswerContrastDiagram（良い回答/悪い回答の汎用対比、career 横断で効く）、RuleOf72・正規分布68/95/99.7・偽陽性グリッド・シンプソン・寄与度分解（numeracy）、クロノタイプ/1日の波形（peakPerformance）、QuestionLadder（critical）、So-What チェーン、空雨傘3段、StaircaseDiagram など。また既存 WhyWhyChain/SoWhat 等の visual は props ハードコードで事例差し替え不可→データ駆動化すれば文字重ステップに挿せる（dev-logic 拡張候補）。
+- 既知の別件（視覚化と無関係・別タスク）: career/feedbackCase 等の本文プローズに残る全角 `／`（TTS 債務、callout 外）、fermi-224/225 の数値・式の不整合。
 
 **注意点:**
 - 絵文字は端末/フォントで見た目が変わるので、ブランドの肝になる所は SVG を優先（だからハイブリッド）。
