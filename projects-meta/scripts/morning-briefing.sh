@@ -3,7 +3,7 @@
 # cron: 0 7 * * * /root/.claude/projects-meta/scripts/morning-briefing.sh >> /var/log/morning-briefing.log 2>&1
 #
 # 仕組み: claude headless + ceo agent
-# 入力: 前日の night-patrol (03:00) + 当日の feedback-watcher (06:00) の出力
+# 入力: 当日未明の night-patrol (03:00) + 当日朝の feedback-watcher (06:00) の出力
 # 出力: obsidian-vault/50-Daily/briefings/YYYY-MM-DD.md
 
 set -uo pipefail
@@ -16,8 +16,8 @@ TEMPLATE="${VAULT_DIR}/90-Templates/briefing-template.md"
 OUT_DIR="${VAULT_DIR}/50-Daily/briefings"
 OUTPUT="${OUT_DIR}/${DATE}.md"
 
-# 前日夜の night-patrol + 当日朝の feedback-watcher を素材として参照
-NIGHT_PATROL="${VAULT_DIR}/50-Daily/inspections/${YESTERDAY}.md"
+# 当日未明の night-patrol (03:00) + 当日朝の feedback-watcher を素材として参照
+NIGHT_PATROL="${VAULT_DIR}/50-Daily/inspections/${DATE}.md"
 FEEDBACK="${VAULT_DIR}/50-Daily/feedback/${DATE}.md"
 
 mkdir -p "$OUT_DIR"
