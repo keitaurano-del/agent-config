@@ -23,8 +23,15 @@ Logic のレッスンは「文字ベースすぎる」ので、視覚化して�
 - カバレッジは ja explain ステップ 744 中 222（約30%）に図解あり（2026-05-26 集計）。残り約7割は文字のみ。手薄な高価値カテゴリ: numeracy(12%/50説明) > cognitive(13%) > issue(12%) > peakPerformance(13%) など。career系・easternPhilosophy は3〜7%。
 - インライン視覚要素（本記事の主題）と図解拡充は両輪で「文字ベースすぎる」を解消する。
 
+**実装状況（2026-05-26、第一弾 shipped・PR #219 で main マージ済み）:**
+- 記法は実装済み: 本文に `[icon:name]`（インラインSVGアイコン。`icon:` 固定prefixで `3:1`/`10:30` 等のコロンと衝突しない）と `:::tip` / `:::warn` / `:::point` / `:::note`（注記ボックス、kind別アイコン+テーマ色）。
+- 実装場所: `src/richText.ts`（パーサ・stripMarkup）、`src/components/RichLessonText.tsx`（ICON_REGISTRY・描画）、`src/lessonSlides.ts`（splitBody を callout-aware 化＝`:::`ブロックは分割の atomic unit）。
+- 執筆ガイドは `logic/CLAUDE.md` gotchas #5 に記載: 正準アイコン名は good/bad/point/warn（エイリアスは内部互換用）、name は小文字＋ハイフンのみ、意味アイコンは語ラベル併記、callout は1スライド最大1個・構造化済みの塊には使わない、密度目安 callout最大1/inlineアイコン2〜3、絵文字は話題物限定で `✓✗★` は生記号でなくアイコン記法。
+- サンプル適用済み: cognitive `id:700`/`id:704`（ja/en）。logic-coach + reviewer 監査通過。
+- 残課題: カバレッジ拡大は未着手（cognitive 2レッスンのみ）。手薄カテゴリ numeracy/cognitive/issue を優先展開予定。`id:704` の good/bad アイコンを個別項目に付けるか（現状は見出しラベル方式）は Keita 判断保留。
+
 **注意点:**
 - 絵文字は端末/フォントで見た目が変わるので、ブランドの肝になる所は SVG を優先（だからハイブリッド）。
-- richText レンダラ(`src/richText.ts` / `src/components/RichLessonText.tsx`)にインラインアイコントークン記法の追加が要る。実装時に logic/CLAUDE.md のアイコン規則にもレッスン例外を追記する。
+- 新カテゴリへ展開する時は上記の執筆ガイド（logic/CLAUDE.md gotchas #5）に従い、サンプル先行→Keita 承認→カテゴリ単位展開のフローを守る。
 
 関連 memory: [[feedback-logic-course-thumbnails]]（サンプル承認フロー）、[[feedback-no-markdown-emphasis]]、[[project-logic-content-audit-20260525]]（レッスン品質の取り組み）
