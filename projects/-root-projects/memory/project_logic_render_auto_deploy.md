@@ -20,7 +20,7 @@ Logic の Render Production environment は **required reviewers なし** で `d
 
 **How to apply:**
 - 今後 Logic の Render Production への deploy は **承認操作不要**。`gh workflow run deploy-production.yml --repo keitaurano-del/logic -f confirm=yes` で即実行される
-- main への push でも Render の auto-deploy が動く（こちらは `render.yaml` の hook 経由、GitHub Action とは独立）
+- **main への push では Render web の auto-deploy は当てにしない**（上記 2026-05-26 訂正参照）。`render.yaml` に `autoDeploy: true` があるが実際は発火しないことが多い。2026-05-27 も PR #233 を main マージ後 12 分待っても未反映で、手動 `deploy-production.yml -f confirm=yes` を実行して初めて反映された（バンドル index-Cd_qnb4B.js → index-B-v5OeCk.js）。**Render web 反映は手動 workflow_dispatch で行うこと**。Android は main push で android-deploy.yml が毎回走るので自動反映される
 - 「Render に最新が反映されてない」と Keita が感じたら、まず確認すべきは：
   1. ブラウザキャッシュ無効化（DevTools → Network → Disable cache）でリロード
   2. `curl -s https://logic-u5wn.onrender.com/ | grep -oE "index-[a-zA-Z0-9_-]+\.js"` で現バンドル ID を見て、`curl -sI` の `last-modified` を確認

@@ -30,3 +30,4 @@
 - [報告はパス参照でなく内容を直接書く](feedback_direct_content_not_path.md) — Obsidian sync 差で Keita がファイルを開けない場合があるため、重要内容は会話本文に直接展開する（パス案内は補足）
 - [レッスン本文の視覚化はハイブリッド](feedback_logic_lesson_visual_hybrid.md) — 図解(SVG diagram)に加え、体系的=SVGアイコン/話題物=絵文字 のハイブリッドで読みやすく。本文限定、UI chromeはアイコンのみ。図解カバレッジは約30%
 - [Logic CI lint は eslint . で全体](reference_logic_ci_lint_scope.md) — CI は `eslint .` でリポ全体を lint。ローカル scoped lint だと docs/samples-src を見逃し push 後に赤くなる。デプロイ前は `eslint .` で確認
+- [task-manager subagent 新設](project_task_manager.md) — タスク管理専任 subagent を 2026-05-27 新設。ステータス管理・抜けもれ提言・完了検証の調整役、実装はせず委譲。正本は各プロジェクト docs/TASK_TRACKER.md
