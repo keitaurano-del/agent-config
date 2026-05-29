@@ -31,3 +31,5 @@
 - [レッスン本文の視覚化はハイブリッド](feedback_logic_lesson_visual_hybrid.md) — 図解(SVG diagram)に加え、体系的=SVGアイコン/話題物=絵文字 のハイブリッドで読みやすく。本文限定、UI chromeはアイコンのみ。図解カバレッジは約30%
 - [Logic CI lint は eslint . で全体](reference_logic_ci_lint_scope.md) — CI は `eslint .` でリポ全体を lint。ローカル scoped lint だと docs/samples-src を見逃し push 後に赤くなる。デプロイ前は `eslint .` で確認
 - [task-manager subagent 新設](project_task_manager.md) — タスク管理専任 subagent を 2026-05-27 新設。ステータス管理・抜けもれ提言・完了検証の調整役、実装はせず委譲。正本は各プロジェクト docs/TASK_TRACKER.md
+- [やることは全部 task-manager に渡す](feedback_route_all_to_task_manager.md) — Keita の依頼・調査で判明した修正・思いついた施策、全部着手前に一旦 task-manager に通して TASK_TRACKER に登録・構造化させる（2026-05-28）
+- [Vultr 2台目サーバ](project_vultr_second_server.md) — 「Claude Code Server 2」167.179.64.231 vhf-4c-16gb を現行複製として構築（2026-05-29）。SSH 鍵 ~/.ssh/vultr_claude2、API キー ~/.vultr_key
