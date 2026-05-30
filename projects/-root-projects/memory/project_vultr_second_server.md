@@ -35,6 +35,8 @@ metadata:
 
 **tmux:** インストール済み。`main` セッション常駐＋`@reboot tmux new-session -d -s main` で再起動後も自動復帰。SSH 切断に耐える長時間作業用。
 
+**対話セッション定期清掃（2026-05-30 Keita 依頼）:** 古い対話 claude セッションが溜まると共有 Anthropic アカウントの取り合いで 529/激遅になる（実際 12h/5h 級のゾンビ3本で新箱が「動いてない」ように見えた）。対策に `dev:~/cron-scripts/session-cleanup.sh` を新設、dev crontab に `0 */2 * * *`（JST 2時間おき）で登録。保護ルール: (1)`--print` 付き=cron headless は触らない (2)tmux `main` pane 配下の常駐林は触らない (3)対話セッションのうち最新1本は無条件で残す（=1本だけなら何時間でも生存、複数溜まった時だけ古い方を reap）。THRESHOLD 既定 7200秒。ログ `~/logs/session-cleanup.log`。手動清掃は旧箱から `ssh -i ~/.ssh/vultr_claude2 root@167.179.64.231` で `kill <pid>`。
+
 **.claude.json（dev）:** theme=dark、~/projects 配下を trust 済みに設定（初回プロンプトで簡易端末が無反応になる問題を解消）。
 
 **2箱運用の役割分担（2026-05-29 Keita 決定）:** 共有 CLAUDE.md で両箱に林の人格が乗るため、同一バッチを並行実装すると origin で二重 push/二重実装の競合が起きる（2026-05-29 に実際に #4/#6/#7 で重複発生）。対策として **林＝新箱(Claude Code Server 2)を主たる実装オーナー**、**旧箱(現行サーバ)＝同能力だが優先順位は林の次の支援役**に一本化。旧箱の既定は実装せず「検証・本番 probe・origin 同期・台帳整理・調整・Keita の直接依頼」。旧箱が動く時は必ず origin を pull して林の作業と被らないか確認してから（二重 push を避ける）。「必要に応じて旧箱でも動く」＝ Keita 指名時 or 林が詰まった時の応援。Anthropic アカウントは両箱共有なので、同時に LLM を回すと 529(Overloaded) を誘発しやすい点も留意（容量はアカウント単位、箱スペックでは増えない）。
