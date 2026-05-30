@@ -38,3 +38,8 @@
 - [task-manager subagent 新設](project_task_manager.md) — タスク管理専任 subagent を 2026-05-27 新設。ステータス管理・抜けもれ提言・完了検証の調整役、実装はせず委譲。正本は各プロジェクト docs/TASK_TRACKER.md
 - [やることは全部 task-manager に渡す](feedback_route_all_to_task_manager.md) — Keita の依頼・調査で判明した修正・思いついた施策、全部着手前に一旦 task-manager に通して TASK_TRACKER に登録・構造化させる（2026-05-28）
 - [Vultr 2台目サーバ](project_vultr_second_server.md) — 「Claude Code Server 2」167.179.64.231 vhf-4c-16gb を現行複製として構築（2026-05-29）。SSH 鍵 ~/.ssh/vultr_claude2、API キー ~/.vultr_key
+- [Logic 本番 Supabase プロジェクトID](reference_logic_supabase_project_id.md) — 正しくは `yctlelmlwjwlcpcxvmgx`。台帳の `refyctlelmlwjwlcpcxvmgx` は誤記（ref 無しが正）
+- [自律林ドライバ](project_autonomous_rin.md) — 駆動役なしでもタスク自律前進。30分毎 cron で headless 林、1ティック1タスク、deploy まで全自律（Keita承認2026-05-30）。kill-switch ~/.autonomous-rin.disabled、Logic優先
+- [Apolloダッシュボード](project_apollo_dashboard.md) — 旧Mission Control。cxo-agent配下の稼働可視化ダッシュボード、port 4317、トークン認証、Vultr常駐。自己修復(systemd+watchdog)・モバイル対応・消費量/受信箱。スマホは cloudflared 名前付きトンネル予定
+- [ナレッジはVaultへ](feedback_knowledge_to_vault.md) — ナレッジ系成果物は全部 obsidian-vault の 20-Knowledge/ に入れる（Apolloの Vault ビューで閲覧）。2026-05-30 Keita指示
+- [Vaultで破壊的git禁止](feedback_vault_no_destructive_git.md) — 共有 obsidian-vault では git reset --hard / clean -f 禁止、add は名指し。2026-05-30 未コミット編集消失事故の再発防止
