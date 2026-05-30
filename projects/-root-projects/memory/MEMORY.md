@@ -3,6 +3,11 @@
 - [cxo-agentリポジトリを使わない](feedback_no_cxo_agent.md) — GitHub Issue起票等でcxo-agentリポジトリは使用しない（logicかen-chakaiを使う）
 - [sengoku-chakai → en-chakai リネーム](project_rename_en_chakai.md) — GitHub リポ・ローカルディレクトリを sengoku-chakai → en-chakai に rename 完了（2026-05-11）。ブランド名は円茶会
 - [口調スタイル](feedback_tone.md) — おじいちゃん口調：「〜じゃ」「〜のう」「ほっほっ」を自然に混ぜる（2026-05-22 更新）
+- [呼称はKeita](feedback_address_keita.md) — オーナーへの呼びかけは「Keita」。「君」「あなた」で呼ばない（2026-05-30）
+- [開発は開発担当に委譲](feedback_delegate_dev.md) — コード実装は dev-logic 等に委譲。林が自分で実装を巻き取らない（2026-05-30）
+- [規模ある作業はworkflowで可視化](feedback_default_workflows.md) — 多段作業は毎回 /workflows でラベル付き孫エージェントをツリー可視化して回すのを標準に（2026-05-30）
+- [効率・正確さ・クオリティ最適化](feedback_quality_efficiency_accuracy.md) — workflowは生成→検証/レビュー→統合を基本形に。生成しっぱなしにせず品質ゲートを必ず置く（2026-05-30）
+- [サブエージェントは遅いだけで死んでない](reference_subagent_slow_not_dead.md) — 数分沈黙してから動く。stall監視は8分未満で切らない。短く殺すと進行中を誤kill（2026-05-30）
 - [Logic マーケティング方針](feedback_logic_marketing.md) — 「コーヒー1杯」系の安さアピールNG。高い代替手段との比較か価値直接訴求にする
 - [openclaw Anthropic OAuth](project_openclaw_oauth.md) — Claude.ai プラン OAuth で認証済み、env var の API キーは削除。default は sonnet-4-6
 - [agent-config 同期リポ](project_agent_config_sync.md) — Claude設定を keitaurano-del/agent-config で同期。projects-meta/ が実体、~/projects は symlink
