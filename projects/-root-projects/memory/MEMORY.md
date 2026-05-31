@@ -48,3 +48,4 @@
 - [タスクID採番はスクリプトで](reference_task_id_numbering.md) — 目視で数えず next-task-id.sh を使う。起票は直列化＋pull後採番。MC-64/65衝突の再発防止（2026-05-31）
 - [Apollo番人エージェント](project_apollo_keeper.md) — 林と独立した Apollo インフラ専任番人。apollo-watchdog(cron */3 死活) + apollo-keeper(cron 15,45 深い点検)の2層。restart自動・コード修正は報告。roster は人格保有11体に整理（2026-05-31）
 - [タスクボードベース実行](feedback_taskboard_based_execution.md) — 全タスクは先にTASK_TRACKER起票→ボードから拾って実行。task-manager=台帳正本/apollo番人=遅延監視の共同責任。inbox/FB由来も全部起票（2026-05-31）
+- [REVIEWはエージェント検証でDONE化](feedback_review_agent_verify_then_done.md) — REVIEWの最終ゲートはKeita実機確認不要。test-functional等が実機検証→必要なら修正→DONE。BLOCKED(判断待ち)とは別（2026-05-31）
