@@ -46,3 +46,4 @@
 - [エージェント9体厳選+人格付与](project_agent_roster_20260531.md) — 2026-05-31 未使用6体削除し開発9体へ。全9体に技術的気質ベースの人格付与（蓮/棚町/紺野/編/関/論堂/試野/夜目/耳塚）。会話はApollo Feedに出る
 - [TODO残してる時に勝手に終わらない](feedback_never_stop_with_open_todos.md) — 着手可能TODOがある限り「締める」判断をせず自律前進。24時間継続が基本。停止は全消化orKeita明示or BLOCKEDのみ残った時だけ（2026-05-31）
 - [タスクID採番はスクリプトで](reference_task_id_numbering.md) — 目視で数えず next-task-id.sh を使う。起票は直列化＋pull後採番。MC-64/65衝突の再発防止（2026-05-31）
+- [Apollo番人エージェント](project_apollo_keeper.md) — 林と独立した Apollo インフラ専任番人。apollo-watchdog(cron */3 死活) + apollo-keeper(cron 15,45 深い点検)の2層。restart自動・コード修正は報告。roster は人格保有11体に整理（2026-05-31）
