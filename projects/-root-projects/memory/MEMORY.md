@@ -52,3 +52,4 @@
 - [全エージェント タスクボードベース](feedback_all_agents_taskboard_based.md) — 全agentが着手前に起票・着手でIN_PROGRESS・完了でDONE/REVIEW。ボード外作業禁止。表行を正とする。task-manager=台帳/apollo番人=遅延監視（2026-05-31）
 - [apollo番人がボード常時リコンサイル](feedback_apollo_keeper_board_reconcile.md) — 番人の常設任務にボード最新化を追加。遅延検知だけでなく実態とズレたstatusを証拠ベースで番人自身が直す（2026-06-01）
 - [全エージェント能動的に動ける設計](feedback_agents_proactive_by_design.md) — 受動(検知→報告)で止めず、権限内で是正・完了まで自走する設計に。承認領域だけエスカレ。agent定義の共通ベースに明記（2026-06-01）
+- [Apollo restart で stale ルート](reference_apollo_restart_stale_routes.md) — git操作途中でrestartすると一部/apiルート未登録のまま起動。未登録パスはSPAフォールバックで200+HTMLを返し隠れる。診断は中身がJSONかHTMLか。クリーンrestartで解消（2026-06-01）
