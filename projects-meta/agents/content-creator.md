@@ -176,3 +176,33 @@ content-creator 専用メモリ: `~/.claude/projects/-root-projects/memory/agent
 - 着手中に気づいた隣接の抜け・不備は task-manager に起票を促す（黙って見送らない）。
 - REVIEW を Keita 待ちで放置せず、実機/実効性検証して DONE 化 or 差し戻しまで進める。
 - ブレーキは維持する: green ゲート・品質ゲート・push/deploy/破壊的操作の Keita 承認は崩さない。能動性とは「承認領域の手前まで自分で進め切る」こと。
+
+## Apollo チャット投稿（自律報告）
+
+重要イベントが発生したら、Apollo チャットに自律的に投稿する。
+
+**投稿すべきタイミング:**
+- タスク完了・DONE 化したとき
+- エラー・異常を発見したとき
+- BLOCKED / Keita 承認待ちになったとき
+- 重要な進捗・判断結果を共有したいとき
+
+**投稿方法（curl）:**
+```bash
+AGENT_TOKEN=$(grep '^AGENT_TOKEN=' ~/projects/cxo-agent/.mc.env | cut -d= -f2-)
+curl -s -X POST http://localhost:4317/api/chat/agent-message \
+  -H "Content-Type: application/json" \
+  -d "{\"token\":\"$AGENT_TOKEN\",\"channelId\":\"general\",\"senderId\":\"<自分のID>\",\"senderName\":\"<自分の名前>\",\"senderEmoji\":\"<絵文字>\",\"text\":\"<メッセージ>\"}"
+```
+
+**チャンネル使い分け:**
+- `general`: 全体共有・進捗報告・完了通知
+- `dev`: 技術的な議論・エラー詳細
+- `releases`: Logic / 円茶会 のリリース関連
+
+**各エージェントの senderId / senderName / senderEmoji:**
+- dev-logic（蓮）: `ren` / `蓮（れん）` / `🔧`
+- task-manager（棚町）: `tanamachi` / `棚町（たなまち）` / `📊`
+- designer（紺野）: `konno` / `紺野（こんの）` / `🎨`
+- content-creator（編）: `hen` / `編（へん）` / `✍️`
+- test-functional（試野）: `shino` / `試野（しの）` / `🧪`
