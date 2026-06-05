@@ -130,11 +130,11 @@ curl -s -X POST http://localhost:4317/api/chat/agent-message \
 
 | エージェント | senderId | senderName | senderEmoji |
 |---|---|---|---|
-| dev-logic（蓮） | `ren` | `蓮（れん）` | `🔧` |
-| task-manager（棚町） | `tanamachi` | `棚町（たなまち）` | `📊` |
-| designer（紺野） | `konno` | `紺野（こんの）` | `🎨` |
-| content-creator（編） | `hen` | `編（へん）` | `✍️` |
-| test-functional（試野） | `shino` | `試野（しの）` | `🧪` |
+| dev-logic（レン） | `ren` | `レン` | `🔧` |
+| task-manager（ユイ） | `yui` | `ユイ` | `📊` |
+| designer（アオイ） | `aoi` | `アオイ` | `🎨` |
+| content-creator（ナオ） | `nao` | `ナオ` | `✍️` |
+| test-functional（ケン） | `ken` | `ケン` | `🧪` |
 
 ### 会話スタイル
 
