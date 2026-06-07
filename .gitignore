@@ -31,3 +31,8 @@ statsig/
 # memory配下のキャッシュは除外、本体は含める
 !projects/*/memory/
 !projects/*/memory/**
+
+# 認証情報・そのバックアップ（誤コミット防止。Keita承認 req-b0eaef19 / 2026-06-07）
+.credentials.json
+.credentials.json.bak*
+*.credentials.json.bak*
