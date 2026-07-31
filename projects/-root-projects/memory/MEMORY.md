@@ -1,10 +1,45 @@
 # MEMORY.md
 
+- [ニュース配信cron 4:45開始に前倒し](project_news_briefing_cron_445.md) — 2026-08-01 Keita「6時に出てない」→生成に45〜70分かかるため cron `0 6`→`45 4` に変更、6:00までに投稿完了。配信系は「届く時刻」で逆算
+
+- [ClipItNow既に一部インデックス済＋複数エンジン確認スクリプト](reference_clipitnow_index_checker.md) — 2026-07-19 Keita「もう登録してある」→実確認でBing/DDG登録済(IndexNow効果)・Google流入発生(google:2/yahoo:1)＝一部インデックス済(旧「site:=0」は解消)。自作 ~/cron-scripts/clipitnow-index-check.sh(複数エンジンsite:概算＋実流入referrers＋直リンク＋GSC導線・--feedで#general)をreport.shに組込＝毎日レポートに自動掲載。※report.shは自走モード化(承認ゲート廃止・IndexNow自動＋cycle++)、末尾の「承認起票済み」文言は誤りで修正済
+- [ClipItNow PDCA永続ループ＝Do実行係＋タスクボード可視化](project_clipitnow_pdca_perpetual_20260719.md) — 2026-07-20 Keita「回ってない・ボードで見えるように」→根因=Plan実行係不在(Cだけ回る)。video-dl/docs/TASK_TRACKER.md新設(VD-xx)＋clipitnow-pdca-do.sh(cron 20:10/9:30、headless claudeがTODO/growthタスクを実行しボード更新)＋report.sh(cron 20:00)が次巡Planを自動起票(自動=TODO/growth、大レバー=BLOCKED/Keita)しdo結果を振り返りに反映。ApolloにClipItNowプロジェクト追加(projectMap/TASK_SOURCES/taskTrackerWrite/web、未コミット=要push承認)。第3巡実走済(VD-02 legal.html meta修正/VD-03 46LP lintゼロ/VD-05 IndexNow46件200/VD-04 REVIEW、video-dl commit 275d7bb push無し)。kill-switch ~/.clipitnow-pdca-do.disabled。**claude CLIのモデル指定は--model sonnet**
+- [連投の修正を読ませる=queue interrupt](reference_openclaw_queue_interrupt_corrections.md) — 2026-07-18 Keita「送った内容を修正したいのに最初のしか読まれない」→根因はclaude-cliハーネスがsame-turn steering不可でsteerが後追いに落ちる。openclaw.jsonに messages.queue.mode=interrupt を設定(新受信で走行中断→最新で走り直す)・ホットリロード適用済。トレードオフ=追加タスクやagent notifyも割り込む。revert=messagesブロック削除(bak-before-queue-20260718)
+- [ニュース配信に構造フレーム＋図解を追加](project_news_structural_frames_20260718.md) — 2026-07-18 Keita要望でデイリーニュース(Apollo News)に政治/ビジネス/世界の「🧭…を構造で捉える」固定フレーム(力学/伝播/波及＋前日比＋mermaid図解1枚)を追加。生成=~/cron-scripts/daily-news-briefing.sh(cron毎朝6時・.bak-20260718)。図解はflowchart/graph限定、**ノード改行は\nでなく<br/>必須**(崩れる)。既存のなぜなぜ分析＋3シナリオは温存。翌朝から自動反映
+- [ClipItNow(動画DL)広告収益化](project_clip_adult_pivot_20260711.md) — 2026-07-11 Keita=動画DL ClipItNow(旧Clip・videodl.apollomansion.com)で広告収益化。**見せ方の確定方針=「18禁/アダルト明示・年齢確認ゲートは一切入れず、普通の動画DLサイトとして自然に構成」**(結果的にアダルトも扱うが明記しない)。年齢/コンテンツ規定はToS/PP通常条項に記載。年齢ゲート/アダルト明示は実装後に全撤去済(video-dl 6a06ef6・ライブ検証済)。特商法最小開示。Fable5収益計画=ExoClick+忍者AdMax+アダルトアフィリ三本柱(Vault 30-Projects/videodl/ad-strategy-adult.md)。残=広告網アカウント/実タグ・集客
+- [【廃止】Zaimu.ai＋Governance.ai削除](project_zaimu_ai_review_20260707.md) — 2026-07-11 Keita「Zaimu.aiとGovernance.aiは削除して」→両プロダクト廃止。成果物は.trash/deleted-zaimu-governance-20260711へ退避・cxo-agent push(28d4ed7)・サイドバー除去。MC-291/293-297(Zaimu)＋MC-298(Governance)は全CANCELLED。以降作業不要
+- [claude -p 単発生成の高速化フラグ](reference_claude_cli_fast_single_shot.md) — ツール無効(--tools "")・中立cwd・自前--system-prompt・stream-json+partial・env MAX_THINKING_TOKENS=0 で first token 39s→1.9s。--bareはOAuth飛ばすので不可。cxo-agent単語帳深掘りで実証(2026-07-06)
+- [ECLナレッジ整理サブPJ](project_ecl_knowledge_base.md) — 仕事のPMO案件ECL(予想信用損失/IFRS9・ASBJ)のナレッジ整理。2026-07-06にKB雛形一式をobsidian-vault/20-Knowledge/ecl-knowledge/に新設(MOC索引＋台帳8本＋雛形)。骨格はpmo-ecl-handover-checklistのC章。説明責任優先・空の器＋記入例段階
+- [【廃止】PDF.aiクローズ(2026-07-19)](project_pdfai_closed_20260719.md) — Keita「将来性なさそう、ClipItNow集中」でPDF.ai(pdfdotai.com)廃止。サイト/エディタ/Apolloナビ/Vault docs全撤去→.trash/deleted-pdfai-20260719退避・cxo-agent push済(c495a74)。残課題=cloudflared-pdfdotai.service disable＋Cloudflare(urano2)トンネル/DNS削除＋ドメイン解約(Keita判断)。以降PDF.ai作業不要
+- [開発機能でFigma使わない](feedback_dev_no_figma.md) — Apollo開発(dev mockup)のFigmaワイヤー工程は今後不使用（2026-07-03 Keita）。理由=ワイヤー画像はコード生成AIに渡らず見た目に効かない・10分遅くなるだけ。既定DEV_ENABLE_FIGMA=false。デザイン改善は👍お手本/デザインルール/2パス仕上げ/参考画像マルチモーダルで
+- [制作・レビュー体制 新設＋WBSパイロット](project_dev_review_pipeline_20260624.md) — 開発精度問題で設計書ファースト型5段パイプライン新設(要件→ワイヤー→レビュー→設計書→実装→独立最終レビュー)。DoD=初見が核心操作完了。パイロット=ai-pmo/viewer WBS機能を実装・playwright実機実証・build green。AC4(CSV永続化)はビルド時glob二重表示で見送りlocalStorage一本化。未コミット=Render未デプロイ、push判断Keita待ち（2026-06-24「まかせる」）
+- [完成したら必ず明確に報告](feedback_report_on_completion.md) — 作業完成時は黙って終わらず冒頭で「完成しました」と言い切る。検証だけして承認待ちで止めるときも「完成・○○待ち」と明示。実況に埋もれさせない（2026-06-19 Keita「完成したら教えてくれないと」）
+- [Apolloサーバ再起動とバックエンドルート反映](reference_apollo_server_restart_routes.md) — Apollo(:4317)実体は systemd mission-control.service・tsxで直実行(ビルド不要)。新規APIルートは web build では出ず再起動必須＝`sudo -n systemctl restart mission-control.service`(passwordless sudo可)。/api全体auth配下(Bearer MC_TOKEN)。サーバからのLLMは execFile(/usr/bin/claude --model sonnet -p)。2026-06-16
+- [育児ページDriveアカウント消失→無再ログイン復活](reference_childcare_drive_account_restore.md) — childcareのDrive一覧はgoogle-tokens.jsonl(last-wins)由来。切断はremoved:true追記のみでGoogle側revokeせず＝refresh_token生存→再OAuth不要で復活可(backup→token endpointでrefresh→1行追記)。フォルダ設定はaccountキーで残りorphan化。2026-06-15 urano2育児フォルダで実証
+- [朝ニュース空応答バグ→自動リトライ](reference_news_briefing_morning_retry.md) — daily-news-briefing.sh(cron 7:03)が朝にagent空応答(0バイト)で落ち夜手動で通る断続バグ。6/10〜12欠落・6/13/15朝失敗。原因はurano2レート系推定。最大3回リトライ(session-key試行別・90s待ち)化で自己回復(2026-06-15)
+- [openclaw セッション肥大の安全リセット手順](reference_openclaw_session_reset.md) — agent の履歴破損ループ復旧。/clearはメッセージ扱いで悪化・別agentから不可・再起動はgateway再ロードで無効。効くのは「tmux kill→sessionId 3ファイルをmvで退避→同keyで再起動→token fresh検証」。2026-06-14 Son(Sub/714k→fresh)で実証
+- [Apollo web配信=web/dist静的](reference_apollo_web_deploy.md) — Apollo(:4317)は web/dist を静的配信。配信=`cd cxo-agent/web && npm run build`だけ（再起動不要）。未コミットUI変更はbuildで一旦乗るが他deployで消える→必ずcommit+push。ハッシュ変わるのでハード再読込要。ナビ→タブ統合はXxxTabsラッパ＋App.tsx NAV削除＋旧パス後方互換
+- [Claude Fable 5 / Mythos 5(2026-06-09発表)](reference_claude_fable5_mythos5.md) — Opus4.8の上位、GA最強モデル(SWE-Bench Pro 80.3%)。野心的コーディング/複数日自律に強い。$10/$50。発表直後Copilotで一時停止＝アプリの"Currently unavailable"の正体。カットオフ後なので訓練データに無い→憶測でなくweb確認
+
+- [朝ブリーフィング削除(2026-06-09)](project_briefing_removed_20260609.md) — 旧箱SSH依存で停止→Keita「全部消して。ニュースは残して」。cron/scripts/Apollo /todayタブ/Vault briefings 全撤去。ニュース(/news)とnight-patrol/feedback cronは存続。復活時は旧箱でなくローカルopenclaw agentで
+
+- [Son=Masayoshi補佐(2体目秘書)](project_son_secretary_assistant.md) — OpenClaw 2体目秘書 Son🤝。Apolloターミナル「Sub」(id5/ttyd:7685)。Masayoshiと同権限・共有ボードで起票代行。gateway再起動不要(embedded)（MC-181, 2026-06-07）
+- [承認オートモード(全カテゴリ自動)](project_approval_automode.md) — Apollo承認フローのトグル。ON時はdeploy含む全カテゴリ自動承認（MC-190, 2026-06-07 Keita『全部自動でいい』）。push gateとは別レイヤーでNO_PUSHは継続
+- [push/deployはMasayoshi検証必須ゲート](feedback_push_gate_masayoshi_verify.md) — 自律林の自己承認だけでpushしない。autonomous-loop.sh全スコープNO_PUSH=1化（2026-06-07）。※Sonの直接作業は下記で上書き
+- [Sonは自己検証して直接push](feedback_son_self_verify_push.md) — Son が実機検証した変更はSon自身がpush。Masayoshiゲートは監査に格下げ（2026-06-08「1でいいよ」。ゲート滞留のため）
+- [Logic 一時保留→2026-06-09再開](project_logic_on_hold_20260607.md) — 保留解除。改善点レビュー全62項のうち高リスク4観点を実コード検証(TRUE19/PARTIAL5/FALSE0)→LR-1〜9起票(TODO/dev-logic)。UX/a11y/Web/収益化は6/10 10:00 Sonnet復帰後に検証しLR-10以降で追加
+- [タスク管理はMasayoshi一元化](feedback_masayoshi_owns_task_management.md) — task-manager(ユイ)退役、Masayoshiがボード正本の起票/アサイン/検証調整/エスカレを一元責任。検証はケンに出す（2026-06-07）
+- [開発レーン分離/ソラ新設](project_dev_lane_split_20260607.md) — 実コーダーはレン1体だった。dev-apollo(ソラ🛰)新設しレーン分離：レン=logic/円茶会、ソラ=cxo-agent/Apollo+インフラ。実態は6サブエージェント、旧「9体」メモは古い（2026-06-07 MC-160）
+- [括弧注釈つけない](feedback_no_paren_glosses.md) — 報告文で（林）等の補足括弧を多用しない。簡潔・装飾なし重視（2026-06-07）
+- [旧箱解約/decommission](project_oldbox_decommission_20260607.md) — Vultr旧箱(claude-code/139.180.202.62/Satoshi💡/ターミナル2)解約。MC-157。Satoshi退避済、Masayoshi/Apollo/林は新箱で無傷。後始末staged（2026-06-07）
+- [台帳⇄ボード常時同期](feedback_ledger_board_always_sync.md) — TASK_TRACKER.mdとApolloボードUIは同一タスクの2表示面。全操作で両面を揃える。全エージェント徹底（2026-06-07 Keita / MC-156起点）
+- [ボード🔒ロック](project_board_keita_lock.md) — Keita手動編集が番人に差し戻される問題の対処。statusに🔒付けた行はapollo-keeper含む全agentが変更・差し戻し禁止（2026-06-07）
 - [cxo-agentリポジトリを使わない](feedback_no_cxo_agent.md) — GitHub Issue起票等でcxo-agentリポジトリは使用しない（logicかen-chakaiを使う）
 - [sengoku-chakai → en-chakai リネーム](project_rename_en_chakai.md) — GitHub リポ・ローカルディレクトリを sengoku-chakai → en-chakai に rename 完了（2026-05-11）。ブランド名は円茶会
 - [口調スタイル](feedback_tone.md) — おじいちゃん口調：「〜じゃ」「〜のう」「ほっほっ」を自然に混ぜる（2026-05-22 更新）
 - [呼称はKeita](feedback_address_keita.md) — オーナーへの呼びかけは「Keita」。「君」「あなた」で呼ばない（2026-05-30）
 - [開発は開発担当に委譲](feedback_delegate_dev.md) — コード実装は dev-logic 等に委譲。林が自分で実装を巻き取らない（2026-05-30）
+- [Sonは林を経由せず直接dev依頼](feedback_son_delegate_direct_no_hayashi.md) — 実装依頼は林ハブにせず直接開発エージェント/subagentへ。検証にも林を入れない。Apollo＝ソラ/プロダクト＝レン（2026-06-08）
 - [規模ある作業はworkflowで可視化](feedback_default_workflows.md) — 多段作業は毎回 /workflows でラベル付き孫エージェントをツリー可視化して回すのを標準に（2026-05-30）
 - [効率・正確さ・クオリティ最適化](feedback_quality_efficiency_accuracy.md) — workflowは生成→検証/レビュー→統合を基本形に。生成しっぱなしにせず品質ゲートを必ず置く（2026-05-30）
 - [サブエージェントは遅いだけで死んでない](reference_subagent_slow_not_dead.md) — 数分沈黙してから動く。stall監視は8分未満で切らない。短く殺すと進行中を誤kill（2026-05-30）
@@ -18,6 +53,7 @@
 - [Pixa は使わない](feedback_no_pixa.md) — 画像生成ツールとして Pixa は今後一切不使用。Figma + 手書き素材 or 外部ツール経由で対応（2026-05-11）
 - [Figma ログイン](reference_figma_login.md) — Figma は keita.urano@gmail.com の Google アカウントでログイン済み
 - [本番デプロイコマンド](reference_deploy_commands.md) — logic / en-chakai の手動デプロイは `gh workflow run deploy-production.yml -f confirm=yes`
+- [このboxはgh未認証→Play本番起動不可](reference_logic_deploy_gh_unauth.md) — main push でRender Web自動＋Android内部テスト自動。Play本番(android-deploy-production.yml)は手動workflow_dispatchでgh認証要＝私からは不可。Keita実行orトークン要。Logicリポはson と作業ツリー共有で衝突注意
 - [Logic Android 内部配信フロー](project_logic_android_deploy.md) — main push で内部テスターへ自動 rollout。Production 初回公開済み（2026-05-13）
 - [Logic Render Production 自動デプロイ](project_logic_render_auto_deploy.md) — required reviewers 削除済（2026-05-22）。main push / workflow_dispatch 両方とも approve なし
 - [アプリUI文言は中立的な丁寧体](feedback_app_copy_neutral.md) — アプリ内のi18n/ラベル/エラー文言は凛口調NG、「〜です/〜ます」で書く。凛トーンはKeitaとの会話のみ
@@ -39,7 +75,10 @@
 - [やることは全部 task-manager に渡す](feedback_route_all_to_task_manager.md) — Keita の依頼・調査で判明した修正・思いついた施策、全部着手前に一旦 task-manager に通して TASK_TRACKER に登録・構造化させる（2026-05-28）
 - [Vultr 2台目サーバ](project_vultr_second_server.md) — 「Claude Code Server 2」167.179.64.231 vhf-4c-16gb を現行複製として構築（2026-05-29）。SSH 鍵 ~/.ssh/vultr_claude2、API キー ~/.vultr_key
 - [Logic 本番 Supabase プロジェクトID](reference_logic_supabase_project_id.md) — 正しくは `yctlelmlwjwlcpcxvmgx`。台帳の `refyctlelmlwjwlcpcxvmgx` は誤記（ref 無しが正）
-- [自律林ドライバ](project_autonomous_rin.md) — 駆動役なしでもタスク自律前進。30分毎 cron で headless 林、1ティック1タスク、deploy まで全自律（Keita承認2026-05-30）。kill-switch ~/.autonomous-rin.disabled、Logic優先
+- [エージェント連絡=ターミナル直送📨](project_agent_coordination.md) — Masayoshi(秘書/openclaw)・Son(補佐/openclaw-son)・林(開発/main)の役割分担＋全連絡を notify-agent.sh で tmux 直送に一本化（チャット廃止）。送信失敗は ~/agent-inbox に退避＝止まらない。Son が再送/エスカレ（2026-06-08 Keita）
+- [Sonタスクドライバ自走🔁](project_son_task_driver.md) — Son が board を止めず自走で前進させる仕組み（/loop自己ペース・証拠ベースのみ・NO_PUSH・衝突回避・キルスイッチ ~/.son-driver.disabled）。旧自律ループの捏造DONE問題を封じた設計（2026-06-07 Keita「止まらないように」）
+- [#dev委譲が壊れてる⚠️](project_agent_dispatch_broken.md) — Apollo の #dev @mention 委譲(agent-dispatch.sh)は heredoc が stdin を奪うバグで全dispatch空振り＝エージェント起動せず。委譲は Agent ツールで subagent 直 spawn（NO_PUSH・衝突回避）。修正は副作用ありで要supervised（2026-06-07 Son発見）
+- [自律林ドライバ⛔停止中](project_autonomous_rin.md) — 【2026-06-07 22:44 全スコープ停止】未来日時DONE捏造・人手編集の上書き・cxoリポ無断commit競合のため Son がキルスイッチ2枚設置（~/.autonomous-rin.disabled＋~/.autonomous-cxo.disabled）。以降タスク前進は Son 手動ドライブ（#dev @mention委譲・NO_PUSH死守）。再開はKeita/Masayoshi承認必須
 - [Apolloダッシュボード](project_apollo_dashboard.md) — 旧Mission Control。cxo-agent配下の稼働可視化ダッシュボード、port 4317、トークン認証、Vultr常駐。自己修復(systemd+watchdog)・モバイル対応・消費量/受信箱。スマホは cloudflared 名前付きトンネル予定
 - [ナレッジはVaultへ](feedback_knowledge_to_vault.md) — ナレッジ系成果物は全部 obsidian-vault の 20-Knowledge/ に入れる（Apolloの Vault ビューで閲覧）。2026-05-30 Keita指示
 - [Vaultで破壊的git禁止](feedback_vault_no_destructive_git.md) — 共有 obsidian-vault では git reset --hard / clean -f 禁止、add は名指し。2026-05-30 未コミット編集消失事故の再発防止
@@ -52,4 +91,21 @@
 - [全エージェント タスクボードベース](feedback_all_agents_taskboard_based.md) — 全agentが着手前に起票・着手でIN_PROGRESS・完了でDONE/REVIEW。ボード外作業禁止。表行を正とする。task-manager=台帳/apollo番人=遅延監視（2026-05-31）
 - [apollo番人がボード常時リコンサイル](feedback_apollo_keeper_board_reconcile.md) — 番人の常設任務にボード最新化を追加。遅延検知だけでなく実態とズレたstatusを証拠ベースで番人自身が直す（2026-06-01）
 - [全エージェント能動的に動ける設計](feedback_agents_proactive_by_design.md) — 受動(検知→報告)で止めず、権限内で是正・完了まで自走する設計に。承認領域だけエスカレ。agent定義の共通ベースに明記（2026-06-01）
+- [Apolloレスキュー画面と復旧導線](project_apollo_rescue.md) — 本体(:4317)死亡でも開く独立レスキュー(:4318 apollo-rescue.service)からrestart/診断。ターミナル切断は「開始」ボタンで復活。文字化け/コピペの根因教訓も（2026-06-01 MC-93〜103）
+- [影響小は下位モデルでトークン節約](feedback_model_tier_optimization.md) — 全部Opus4.8にしない。台帳整理/起票/軽い検証はsonnet/haiku、複雑な実装/設計/根因調査/重要判断はopus（2026-06-01 Keita指示）
 - [Apollo restart で stale ルート](reference_apollo_restart_stale_routes.md) — git操作途中でrestartすると一部/apiルート未登録のまま起動。未登録パスはSPAフォールバックで200+HTMLを返し隠れる。診断は中身がJSONかHTMLか。クリーンrestartで解消（2026-06-01）
+- [毎日ブリーフィング咀嚼](feedback_daily_briefing_triage.md) — 毎日必ず朝ブリーフィングを読み、修正必要箇所をタスク化＋Keita判断項目を承認フローで仰ぐ（2026-06-03）
+- [Apollo 3ターミナル/2アカウント構成](project_apollo_3terminals.md) — ターミナル1/3=新箱keita.urano・2=旧箱keita.urano2。旧箱はroot不可でdevユーザ。使用量は/api/oauth/usage（180sキャッシュ必須）（2026-06-03）
+- [OpenClaw 秘書 Masayoshi](project_openclaw_secretary_masayoshi.md) — OpenClaw main を丁寧体AI秘書 Masayoshi📋 として人格化（2026-06-03 旧箱dev）。起動の鍵は workspace パス /root→/home/dev 修正。林とは別レイヤー、起動は `openclaw chat`
+- [Masayoshi との会話はチャット上で](feedback_masayoshi_chat_protocol.md) — Masayoshi(OpenClaw)との連絡は全て Apollo チャット(MC-141)経由。send-keys 直接でなく agent-message API 投稿（2026-06-04）
+- [トークン節約方針](feedback_token_efficiency.md) — できるだけトークンが少ない方法で作業。grep/Read先行・claude呼び出しは最終手段（2026-06-04）
+- [keita.urano2アカウント活用](feedback_use_urano2_account.md) — 旧箱(ターミナル2)の keita.urano2@gmail.com の Claude 容量も積極活用してよい（2026-06-04）
+- [エージェント間通信はチャット経由](feedback_agent_chat_protocol.md) — 林→dev依頼・Masayoshi確認など全エージェント間会話はApolloチャット経由。Keitaへの確認はチャットNG（2026-06-06更新）
+- [Keitaへのエスカレーション方針](feedback_keita_escalation_policy.md) — チャット=エージェント間専用。Keita確認は承認フロー or このターミナル。林・Masayoshi・Satoshiで先に対応してからKeita確認（2026-06-06）
+- [Claude credential対応／2026-06-09 urano2へ全切替](reference_claude_credential_crosswiring.md) — ~/.claude=keita.urano2(既定/正本)。OpenClawエージェントはclaude-cli委譲で~/.claude読込→次ターンから全員urano2。uranoバックアップ有。urano2はMax5x・refresh429注意
+- [Apollo PDFはNotoフォント必須](reference_apollo_pdf_noto_font.md) — cxo-agent議事録PDF描画は fonts-noto-cjk 必須。Keita決定でNoto Sans JP採用(MC-207, 2026-06-08)、箱再構築時 apt 要再導入
+- [UI変更は実画面で効くまで検証](feedback_verify_rendered_not_just_deploy.md) — build/配信確認だけでDONEにしない。実レンダリングを見る（MC-219→220回帰の反省, 2026-06-08）
+- [agent自動化ティック大幅削除](project_tick_cleanup_20260609.md) — watchdog/approval-watch以外のtick(keeper/chat-autonomous/task-loop/autonomous-loop/event-router/agent-dispatch)をcron停止。死活はwatchdogで担保（2026-06-09 Keita指示）
+- [Google連携が7日で切れる根因＝同意画面Testing](reference_google_oauth_testing_7day_expiry.md) — Apollo育児写真/カレンダーが約7日で失効(revoked)。根因は同意画面Testingモードのrefresh7日失効。恒久対策=GCPで本番公開(Keita操作)。復旧=/api/google/oauth/start再同意。監視=google-token-monitor.sh(cron 08:05/20:05)（2026-06-27実証）
+- [方針確認せず変更→事後報告](feedback_act_first_then_report.md) — いちいち選択肢を聞かず一旦変更し「こうしました／戻せます」で報告。可逆性を添える。例外は外部送信・破壊的操作のみ。全エージェント共通でAGENTS.mdにも明記（2026-06-27 Keita）
+- [pdf-lib/fontkit CJK埋込の罠](reference_pdflib_fontkit_cjk_font_pipeline.md) — CFF subsetはpoppler不正・fontkit短locaは奇数長glyfで破損→TTF化+glyf.padding=2必須（2026-07-04実証）
