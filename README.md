@@ -11,6 +11,7 @@ Claude Code のユーザー設定 + プロジェクトレベルのエージェ�
 | `projects/-root-projects/memory/` | auto memory（MEMORY.md と各メモリファイル） |
 | `projects-meta/CLAUDE.md` | `~/projects/CLAUDE.md` の実体 — プロジェクト全体方針 |
 | `projects-meta/agents/` | `~/projects/.claude/agents/` の実体 — ceo / pm / secretary / dev-* / marketing |
+| `projects-meta/web-hooks/` | Claude Code on the web 用 SessionStart フック (各サブプロジェクトに展開) |
 | `bootstrap.sh` | clone 後にローカルで symlink を張るスクリプト |
 | `.gitignore` | 認証情報・セッション履歴・キャッシュ等を除外 |
 
@@ -74,6 +75,22 @@ git push
 ```bash
 PROJECTS_DIR=/custom/path ~/.claude/bootstrap.sh
 ```
+
+## Claude Code on the web で凜を呼び出すには
+
+ブラウザ版の Claude Code はリポ単体で起動するため、`~/projects/CLAUDE.md` を遡って読んでくれない。
+凜のペルソナを web セッションでも読ませるには SessionStart フックを各サブプロジェクトに展開する：
+
+```bash
+cd ~/projects/logic   # または sengoku-chakai / cxo-agent
+mkdir -p .claude/hooks
+cp ~/.claude/projects-meta/web-hooks/session-start.sh .claude/hooks/session-start.sh
+chmod +x .claude/hooks/session-start.sh
+cp ~/.claude/projects-meta/web-hooks/settings.json .claude/settings.json  # 既存があれば hooks ブロックをマージ
+git add .claude/ && git commit -m "add SessionStart hook to inject 凜 persona" && git push
+```
+
+詳細は `projects-meta/web-hooks/README.md` 参照。
 
 ## 注意
 
