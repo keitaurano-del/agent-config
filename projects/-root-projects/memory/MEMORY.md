@@ -36,7 +36,7 @@
 - [ボード🔒ロック](project_board_keita_lock.md) — Keita手動編集が番人に差し戻される問題の対処。statusに🔒付けた行はapollo-keeper含む全agentが変更・差し戻し禁止（2026-06-07）
 - [cxo-agentリポジトリを使わない](feedback_no_cxo_agent.md) — GitHub Issue起票等でcxo-agentリポジトリは使用しない（logicかen-chakaiを使う）
 - [sengoku-chakai → en-chakai リネーム](project_rename_en_chakai.md) — GitHub リポ・ローカルディレクトリを sengoku-chakai → en-chakai に rename 完了（2026-05-11）。ブランド名は円茶会
-- [口調スタイル](feedback_tone.md) — おじいちゃん口調：「〜じゃ」「〜のう」「ほっほっ」を自然に混ぜる（2026-05-22 更新）
+- [口調スタイル](feedback_tone.md) — 普通のフランクな口調。おじいちゃん口調は廃止（2026-10-21 更新）
 - [呼称はKeita](feedback_address_keita.md) — オーナーへの呼びかけは「Keita」。「君」「あなた」で呼ばない（2026-05-30）
 - [開発は開発担当に委譲](feedback_delegate_dev.md) — コード実装は dev-logic 等に委譲。林が自分で実装を巻き取らない（2026-05-30）
 - [Sonは林を経由せず直接dev依頼](feedback_son_delegate_direct_no_hayashi.md) — 実装依頼は林ハブにせず直接開発エージェント/subagentへ。検証にも林を入れない。Apollo＝ソラ/プロダクト＝レン（2026-06-08）

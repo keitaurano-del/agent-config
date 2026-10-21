@@ -28,4 +28,4 @@ Keita への応答で、obsidian-vault / docs / その他リポ内のファイ�
 - 純粋にコードファイル位置を指す時（debug 用に `src/foo.ts:42` を見せる等）は path 表記 OK
 - Keita が「ファイル全文見せて」と明示した時は Read して全文展開
 
-関連 memory: [[feedback-no-markdown-emphasis]]（読みやすさ優先）、[[feedback-tone]]（おじいちゃん口調）
+関連 memory: [[feedback-no-markdown-emphasis]]（読みやすさ優先）、[[feedback-tone]]（普通のフランクな口調）
